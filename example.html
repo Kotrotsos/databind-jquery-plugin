@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body { font-family: "Arial"; }
+        p {background-color:lightgray;padding:5px;}
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="jquery.databind.min.js"></script>
+</head>
+
+<script>
+    $(function() {
+
+        // Some data to work with.
+        data = {
+            "fielddata": {
+                "text1": "4B030C2E-3D53-4DF8-A3535EF377B45DE5",
+                "text2": "Unlabeled",
+                "bool1": true,
+                "select1": "opt2",
+                "radio" :true
+            }
+        };
+
+        // First, drape the JSON over the fields
+        var form = $('#myform');
+        form.JSONToFields(data);
+
+        // get the JSON from the fields (Serialize it)
+        $('#getit').click(function() {
+           alert( JSON.stringify(form.fieldsToJSON() ) );
+           return false;
+        });
+    });
+</script>
+
+<body>
+
+<!-- Warning- ugly HTML ahead -->
+
+<form id="myform">
+    <h2>Databind. jQuery plugin.</h2>
+    <p>Uses data-bind field</p>
+    <input type="text" value="" data-bind="fielddata.text1">
+    <input type="text" value="" data-bind="fielddata.text2">
+
+    <p>Will use name field for exporting values out.</p>
+    <input type="checkbox"
+           name="fielddata.bool1." value="1" data-bind="fielddata.bool1">
+
+    <p>Will use name field for exporting values out.</p>
+    <select name="fielddata.select1" data-bind="fielddata.select1">
+        <option value="opt">1</option>
+        <option value="opt2">2</option>
+    </select>
+
+    <p>Radiobuttons seem to work nicely- however only on $.fieldsToJSON()</p>
+    <input type="radio" name="fielddata.radio" value="Water" data-bind="fielddata.radio"> Water<br>
+    <input type="radio" name="fielddata.radio" value="Beer"> Beer<br>
+    <input type="radio" name="fielddata.radio" value="Wine" checked> Wine
+
+</form>
+    <p>Serialize the form and show an alert.</p>
+     <button id="getit">Get the data</button>
+
+<br><br> Follow <a href="http://twitter.com/kotrotsos">@kotrotsos</a>
+
+</body>
+</html>
