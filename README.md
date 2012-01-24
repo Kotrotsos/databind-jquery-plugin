@@ -1,10 +1,12 @@
 # Databind jQuery Plugin.
 
 Serializes a form into a JSON compatible JS object.
-$('yourform').fieldsToJSON()
+
+`$('yourform').fieldsToJSON()`
 
 Databinds (one way for now) a JSON object onto the fields.
-$('yourform').JSONToFields()
+
+`$('yourform').JSONToFields()`
 
 See example.html source for how this works.
 
